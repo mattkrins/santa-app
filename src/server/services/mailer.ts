@@ -3,7 +3,7 @@ import nodemailer, { SentMessageInfo, Transporter } from "nodemailer";
 import { database } from "./database.js";
 
 const transporter = nodemailer.createTransport({
-	host: process.env.MAIL_HOST,
+	host: process.env.MAIL_HOST||"smtp.ethereal.email",
 	port: process.env.MAIL_PORT ? parseInt(process.env.MAIL_PORT) : 587,
 	auth: {
 		user: process.env.MAIL_USER,
@@ -34,8 +34,8 @@ Wish List: <b>${list}</b><br/>\n
 	database.pendingWishes = [];
 	try {
 		return await (transport || transporter).sendMail({
-			from: '"do_not_reply@northpole.com',
-			to: "santa@northpole.com",
+			from: process.env.MAIL_FROM||'"do_not_reply@northpole.com',
+			to: process.env.MAIL_TO||"santa@northpole.com",
 			subject: "Pending Wishes",
 			html: `<h2>Pending Wishes</h2><br/>${wishString}`,
 		});
