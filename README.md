@@ -1,67 +1,81 @@
-# IMPORTANT! READ before starting
+# Santa's Wishlist WebApp
 
-By default for anonymous users (non logged in), your code and app will only remain on glitch.com for 5 days.
-In order to not lose your challenge, please create a glitch.com account and log in to glitch.com before proceeding.
+A simple web application that allows children to submit their wishes to Santa Claus. The app ensures that only registered children under the age of 10 can submit their wishes, and it sends the wishes to Santa every 15 seconds via email.
 
-The following README contains instructions to guide you through the coding challenge, please read them carefully.
+## Table of Contents
 
-# JS coding challenge:
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
 
-## How to create and submit your app using glitch
+## Features
 
-1. **Login to glitch**: make sure you are logged in to glitch.com
+- **Child Registration Verification:** Checks if the child is registered in the system.
+- **Age Verification:** Ensures the child is less than 10 years old before accepting their wish.
+- **Error Handling:** Displays appropriate error messages if the child is not registered or too old.
+- **Wish Submission:** Successfully registered and eligible children can submit their wishes to Santa.
+- **Automated Email Sending:** Every 15 seconds, the server sends an email to Santa with all pending wishes.
 
-2. **Clone**: Go to this URL: https://glitch.com/~js-santa-app and click the `Remix your own` button to clone the code. This will copy all the code to a new, randomly generated URL (e.g. https://glitch.com/edit/#!/capable-toothpaste). This is your URL to code on, no other candidates will have this URL.
+## Prerequisites
 
-3. **Code**: You can edit the code directly in the Glitch editor or use your editor of choice (VSCode, Sublime, etc) and copy paste the files into Glitch. Git import and export is also available in the Tools menu on the bottom left. How you edit the code is entirely up to you, so long as your finished work is viewable at the URL created in the previous step.
+- Node.js (v20 or later)
+- npm (v10 or later)
+- [Ethereal Email Account](https://ethereal.email) for testing email sending
 
-> **NOTE**: Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+## Installation
 
-4. **Turn in**: When you finish coding, send your URL to us so we can review your code.
+1. Clone the repository:
 
-## Objectives overview:
+   ```bash
+   git clone https://github.com/mattkrins/santa-app.git
+   cd santas-wishlist
+   ```
 
-The webapp should display a form for children to enter their id and a free text message to santa.
+2. Install the required dependencies:
+   `npm install`
+3. Set up the environment variables:
+   ```
+   MAIL_USER=your_ethereal_username
+   MAIL_PASS=your_ethereal_password
+   # Optional
+   MAIL_HOST=smtp.ethereal.email
+   MAIL_PORT=587
+   MAIL_DELAY=15000
+   MAIL_FROM=do_not_reply@northpole.com
+   MAIL_TO=santa@northpole.com
+   ```
 
-When submitting the form, the server should check:
+## Usage
 
-1.  that the child is registered
-2.  that the child is less than 10 years old.
-    To this purpose, the server can fetch user and profiles data in JSON format from:
+### Development
 
-- https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json
-- https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json
+1.  Start the development server: `npm dev`
+    This will run both the client and server in watch mode, allowing you to see changes in real-time.
+    - Client Development: The client is developed using React and Vite, using TypeScript
+    - Server Development: The server is built with Node.js and Express, using TypeScript.
+2.  Open your web browser and go to **http://localhost:3001**.
 
-If the child is not registered (no match for the user id) or more than 10years old, the webapp should display a basic error page with an error message explaining the problem.\
-If the child is registered and less than 10 years old, the server should show a page indicating that the request has been received.
+### Production
 
-Every 15seconds, the server should send an email with information on all pending (not yet sent) requests including:
+1.  Build the application: `npm build`
+    The application is built into **/dist** folder.
+2.  Start the server: `npm start`
+    The Express server serves the built application from **/dist/server/server.js**.
+3.  Open your web browser and go to **http://localhost:3000**.
 
-- child username (eg. charlie.brown)
-- child's address (eg. 219-1130, Ikanikeisaiganaibaai, Musashino-shi, Tokyo)
-- request free text as was input in the form
+### Testing
 
-Email sender should be set as do_not_reply@northpole.com, and sent to santa@northpole.com
+This project uses Vitest for testing. To run the test: `npm test`\
+[ethereal.mail](https://ethereal.email) will be used to test the mailer service. A username and password will be generated and printed to the console.
 
-## Tips and detailed instructions:
+## Configuration
 
-- Somebody started to work on the app, but left it unfinished and did not use any modern technology. We added React for you to have a clean base but feel free to use any other technology you might prefer.
-- The UI and UX of the application for this challenge is not the priority. The pages/email do not need to look good, as long as they convey the information effectively.
-- You should fetch the JSON data at every form submission (consider it as an API).
-- For the sake of the challenge, you can keep the requests in-memory only.
-- You are encouraged to select and use npm packages as needed (you can add packages by editing package.json, or using `npm install` from the glitch console).
-- To get an smtp server for emails, go to https://ethereal.email/ and click "Create Ethereal Account".\
-  This will give you an account (take note of your username and pwd if you need to re-logon later) and smtp server (actual emails do not get delivered).\
-  Go to https://ethereal.email/messages to see the emails that have been received by the smtp server.
+### SMTP Configuration:
 
-## Some things we will look for in your submission
+The server uses Ethereal Email for sending emails by default, which is great for testing.\ You can replace it with any SMTP service by updating the .env file.
 
-- Code quality (readability, use of modern syntax...)
-- Does the app work as designed (cf. objectives overview)
-- App architecture (folder structure, configuration management...)
-- Documentation (why did you choose to change or add a package...)
+### Email Sending Interval:
 
-## Tips on usage of glitch
-
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
-When your app is running, you can access logs and console using the "Tools" button at the bottom left.
+The interval for sending emails can be modified in the server configuration (default is 15 seconds).
