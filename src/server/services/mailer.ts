@@ -1,3 +1,4 @@
+import "dotenv/config";
 import process from "process";
 import nodemailer, { SentMessageInfo, Transporter } from "nodemailer";
 import { database } from "./database.js";
