@@ -40,6 +40,7 @@ A simple web application that allows children to submit their wishes to Santa Cl
    MAIL_USER=your_ethereal_username
    MAIL_PASS=your_ethereal_password
    # Optional
+   PORT=3000
    MAIL_HOST=smtp.ethereal.email
    MAIL_PORT=587
    MAIL_DELAY=15000
