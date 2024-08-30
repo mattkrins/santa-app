@@ -53,16 +53,16 @@ A simple web application that allows children to submit their wishes to Santa Cl
 
 1.  Start the development server: `npm dev`
     This will run both the client and server in watch mode, allowing you to see changes in real-time.
-    - Client Development: The client is developed using React and Vite, using TypeScript
-    - Server Development: The server is built with Node.js and Express, using TypeScript.
+    - Client Development: The client is developed using React and Vite, using TypeScript on port **3001**.
+    - Server Development: The server is built with Node.js and Express, using TypeScript on port **3000**.\
+      The **default / route** will serve client files from the **/dist** folder once built.\
+      The **/API route** will serve API requests from either the development server or production server.
 2.  Open your web browser and go to **http://localhost:3001**.
 
 ### Production
 
-1.  Build the application: `npm build`
-    The application is built into **/dist** folder.
-2.  Start the server: `npm start`
-    The Express server serves the built application from **/dist/server/server.js**.
+1.  Build the project: `npm build` into the **/dist** folder.
+2.  Start the production server: `npm start`
 3.  Open your web browser and go to **http://localhost:3000**.
 
 ### Testing
@@ -74,7 +74,8 @@ This project uses Vitest for testing. To run the test: `npm test`\
 
 ### SMTP Configuration:
 
-The server uses Ethereal Email for sending emails by default, which is great for testing.\ You can replace it with any SMTP service by updating the .env file.
+The server uses Ethereal Email for sending emails by default, which is great for testing.\
+You can replace it with any SMTP service by updating the .env file.
 
 ### Email Sending Interval:
 
