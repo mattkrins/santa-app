@@ -1,6 +1,8 @@
 # Santa's Wishlist WebApp
+`Coding Assessment`
 
 A simple web application that allows children to submit their wishes to Santa Claus. The app ensures that only registered children under the age of 10 can submit their wishes, and it sends the wishes to Santa every 15 seconds via email.
+
 
 ## Table of Contents
 
