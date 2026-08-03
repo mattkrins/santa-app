@@ -45,7 +45,7 @@
     "jsdom": "^25.0.0",
     "light-my-request": "^5.14.0",
     "npm-run-all2": "^6.2.2",
-    "postcss": "^8.4.41",
+    "postcss": "^8.5.25",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "3.3.3",
